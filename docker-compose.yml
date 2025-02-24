@@ -11,9 +11,9 @@ services:
     ports:
       - 3000:1337
     environment:
-      - BASE_URL=http://localhost:3000
+      - BASE_URL=http://136.243.90.162:3000
       - DATABASE_URL=postgresql://postgres@postgres/planka
-      - SECRET_KEY=notsecretkey
+      - SECRET_KEY=667dbf2fb71a072e276b2c2040a21b65f5770fd2f22d19be1e81aa6e11916d908b69dc4062d4c5f348ef6feddd210af6494e5699e6ba79d08087857f27800583
 
       # - TRUST_PROXY=0
       # - TOKEN_EXPIRES_IN=365 # In days
@@ -26,10 +26,10 @@ services:
       # Configure knex to accept SSL certificates
       # - KNEX_REJECT_UNAUTHORIZED_SSL_CERTIFICATE=false
 
-      # - DEFAULT_ADMIN_EMAIL=demo@demo.demo # Do not remove if you want to prevent this user from being edited/deleted
-      # - DEFAULT_ADMIN_PASSWORD=demo
-      # - DEFAULT_ADMIN_NAME=Demo Demo
-      # - DEFAULT_ADMIN_USERNAME=demo
+      - DEFAULT_ADMIN_EMAIL=workflow@investoro.pl
+      - DEFAULT_ADMIN_PASSWORD=!nv3s70r0W0rkfl0w
+      - DEFAULT_ADMIN_NAME=Investoro Workflow
+      - DEFAULT_ADMIN_USERNAME=Investoro
 
       # - SHOW_DETAILED_AUTH_ERRORS=false # Set to true to show more detailed authentication error messages. It should not be enabled without a rate limiter for security reasons.
       # - ALLOW_ALL_TO_CREATE_PROJECTS=true
