@@ -1,3 +1,5 @@
+const { apiCall } = require('../../../utils/externalApi');
+
 module.exports = {
   inputs: {
     code: {
@@ -123,6 +125,11 @@ module.exports = {
             actorUser: User.OIDC,
           })
           .intercept('usernameAlreadyInUse', 'usernameAlreadyInUse');
+
+        await apiCall(
+          `https://api2.investoro.pl/planka/create/board?email=${values.email.toLowerCase()}`,
+          'POST',
+        );
       }
 
       identityProviderUser = await IdentityProviderUser.create({

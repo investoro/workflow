@@ -16,38 +16,48 @@ const AddStep = React.memo(
   ({ users, currentUserIds, permissionsSelectStep, title, onCreate, onClose }) => {
     const [t] = useTranslation();
     const [step, openStep, handleBack] = useSteps();
-    const [search, handleSearchChange] = useField('');
-    const cleanSearch = useMemo(() => search.trim().toLowerCase(), [search]);
+    const [emailOrUsername, handleFieldChange] = useField('');
+    // const cleanSearch = useMemo(() => search.trim().toLowerCase(), [search]);
 
-    const filteredUsers = useMemo(
-      () =>
-        users.filter(
-          (user) =>
-            user.email.includes(cleanSearch) ||
-            user.name.toLowerCase().includes(cleanSearch) ||
-            (user.username && user.username.includes(cleanSearch)),
-        ),
-      [users, cleanSearch],
-    );
+    // const filteredUsers = useMemo(
+    //   () =>
+    //     users.filter(
+    //       (user) =>
+    //         user.email.includes(cleanSearch) ||
+    //         user.name.toLowerCase().includes(cleanSearch) ||
+    //         (user.username && user.username.includes(cleanSearch)),
+    //     ),
+    //   [users, cleanSearch],
+    // );
 
-    const searchField = useRef(null);
+    const emailOrUsernameField = useRef(null);
 
-    const handleUserSelect = useCallback(
-      (id) => {
-        if (permissionsSelectStep) {
-          openStep(StepTypes.SELECT_PERMISSIONS, {
-            userId: id,
-          });
-        } else {
-          onCreate({
-            userId: id,
-          });
+    // const handleAddOrSendInvite = useCallback(() => {
+    //   if (emailOrUsername) {
+    //     onCreate({
+    //       emailOrUsername,
+    //     });
+    //   } else {
+    //     emailOrUsernameField.current.focus();
+    //   }
+    // })
 
-          onClose();
-        }
-      },
-      [permissionsSelectStep, onCreate, onClose, openStep],
-    );
+    // const handleUserSelect = useCallback(
+    //   (id) => {
+    //     if (permissionsSelectStep) {
+    //       openStep(StepTypes.SELECT_PERMISSIONS, {
+    //         userId: id,
+    //       });
+    //     } else {
+    //       onCreate({
+    //         userId: id,
+    //       });
+    //
+    //       onClose();
+    //     }
+    //   },
+    //   [permissionsSelectStep, onCreate, onClose, openStep],
+    // );
 
     const handleRoleSelect = useCallback(
       (data) => {
@@ -59,11 +69,11 @@ const AddStep = React.memo(
       [onCreate, step],
     );
 
-    useEffect(() => {
-      searchField.current.focus({
-        preventScroll: true,
-      });
-    }, []);
+    // useEffect(() => {
+    //   searchField.current.focus({
+    //     preventScroll: true,
+    //   });
+    // }, []);
 
     if (step) {
       switch (step.type) {
@@ -99,27 +109,38 @@ const AddStep = React.memo(
           })}
         </Popup.Header>
         <Popup.Content>
-          <Input
-            fluid
-            ref={searchField}
-            value={search}
-            placeholder={t('common.searchUsers')}
-            icon="search"
-            onChange={handleSearchChange}
-          />
-          {filteredUsers.length > 0 && (
-            <div className={styles.users}>
-              {filteredUsers.map((user) => (
-                <UserItem
-                  key={user.id}
-                  name={user.name}
-                  avatarUrl={user.avatarUrl}
-                  isActive={currentUserIds.includes(user.id)}
-                  onSelect={() => handleUserSelect(user.id)}
-                />
-              ))}
-            </div>
-          )}
+          {/* <Input */}
+          {/*  fluid */}
+          {/*  ref={searchField} */}
+          {/*  value={search} */}
+          {/*  placeholder={t('common.searchUsers')} */}
+          {/*  icon="search" */}
+          {/*  onChange={handleSearchChange} */}
+          {/* /> */}
+          <div className={styles.inputWrapper}>
+            <div className={styles.inputLabel}>{t('common.email')}</div>
+            <Input
+              fluid
+              ref={emailOrUsernameField}
+              name="emailOrUsername"
+              value={emailOrUsername}
+              className={styles.input}
+              onChange={handleFieldChange}
+            />
+          </div>
+          {/* {filteredUsers.length > 0 && ( */}
+          {/*  <div className={styles.users}> */}
+          {/*    {filteredUsers.map((user) => ( */}
+          {/*      <UserItem */}
+          {/*        key={user.id} */}
+          {/*        name={user.name} */}
+          {/*        avatarUrl={user.avatarUrl} */}
+          {/*        isActive={currentUserIds.includes(user.id)} */}
+          {/*        onSelect={() => handleUserSelect(user.id)} */}
+          {/*      /> */}
+          {/*    ))} */}
+          {/*  </div> */}
+          {/* )} */}
         </Popup.Content>
       </>
     );
