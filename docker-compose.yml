@@ -10,8 +10,9 @@ services:
     ports:
       - 3000:1337
     environment:
-      - BASE_URL=http://localhost:3000
+      - BASE_URL=http://136.243.90.162:3000
       - DATABASE_URL=postgresql://postgres@postgres/planka
+      - SECRET_KEY=667dbf2fb71a072e276b2c2040a21b65f5770fd2f22d19be1e81aa6e11916d908b69dc4062d4c5f348ef6feddd210af6494e5699e6ba79d08087857f27800583
 
       # Optionally store the database password in secrets:
       # - DATABASE_URL=postgresql://postgres:$${DATABASE_PASSWORD}@postgres/planka
@@ -20,7 +21,6 @@ services:
       # secrets:
       #   - database_password
 
-      - SECRET_KEY=notsecretkey
       # Optionally store in secrets - then SECRET_KEY should not be set
       # - SECRET_KEY__FILE=/run/secrets/secret_key
 
@@ -41,12 +41,10 @@ services:
       # - DEFAULT_LANGUAGE=en-US
 
       # Do not comment out DEFAULT_ADMIN_EMAIL if you want to prevent this user from being edited/deleted
-      # - DEFAULT_ADMIN_EMAIL=demo@demo.demo
-      # - DEFAULT_ADMIN_PASSWORD=demo
-      # Optionally store in secrets - then DEFAULT_ADMIN_PASSWORD should not be set
-      # - DEFAULT_ADMIN_PASSWORD__FILE=/run/secrets/default_admin_password
-      # - DEFAULT_ADMIN_NAME=Demo Demo
-      # - DEFAULT_ADMIN_USERNAME=demo
+      - DEFAULT_ADMIN_EMAIL=workflow@investoro.pl
+      - DEFAULT_ADMIN_PASSWORD=!nv3s70r0W0rkfl0w
+      - DEFAULT_ADMIN_NAME=Investoro Workflow
+      - DEFAULT_ADMIN_USERNAME=Investoro
 
       # - ACTIVE_USERS_LIMIT=
 
@@ -110,6 +108,8 @@ services:
   postgres:
     image: postgres:16-alpine
     restart: on-failure
+    ports:
+      - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
