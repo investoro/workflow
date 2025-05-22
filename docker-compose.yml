@@ -10,7 +10,7 @@ services:
     ports:
       - 3000:1337
     environment:
-      - BASE_URL=http://136.243.90.162:3000
+      - BASE_URL=https://flipboard.investoro.pl
       - DATABASE_URL=postgresql://postgres@postgres/planka
       - SECRET_KEY=667dbf2fb71a072e276b2c2040a21b65f5770fd2f22d19be1e81aa6e11916d908b69dc4062d4c5f348ef6feddd210af6494e5699e6ba79d08087857f27800583
 
@@ -111,7 +111,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data_v2
     environment:
       - POSTGRES_DB=planka
       - POSTGRES_HOST_AUTH_METHOD=trust
