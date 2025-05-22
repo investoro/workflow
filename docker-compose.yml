@@ -121,6 +121,18 @@ services:
       timeout: 5s
       retries: 5
 
+  pgadmin:
+   image: dpage/pgadmin4
+   container_name: pgadmin
+   restart: always
+   environment:
+     PGADMIN_DEFAULT_EMAIL: workflow@investoro.pl
+     PGADMIN_DEFAULT_PASSWORD: !nv3s70r0W0rkfl0w
+   ports:
+     - "5050:80"
+   depends_on:
+     - postgres
+
 volumes:
   favicons:
   user-avatars:
