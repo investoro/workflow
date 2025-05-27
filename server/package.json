@@ -63,6 +63,7 @@
     "read": "^4.1.0",
     "rimraf": "^5.0.10",
     "sails": "^1.5.14",
+    "wordpress-password-js": "^1.0.0",
     "sails-hook-orm": "^4.0.3",
     "sails-hook-sockets": "^3.0.2",
     "sails-postgresql": "^5.0.1",

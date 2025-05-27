@@ -1,6 +1,8 @@
 services:
   planka:
-    image: ghcr.io/plankanban/planka:2.0.0-rc.2
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: on-failure
     volumes:
       - favicons:/app/public/favicons
@@ -127,7 +129,7 @@ services:
    restart: always
    environment:
      PGADMIN_DEFAULT_EMAIL: workflow@investoro.pl
-     PGADMIN_DEFAULT_PASSWORD: !nv3s70r0W0rkfl0w
+     PGADMIN_DEFAULT_PASSWORD: "!nv3s70r0W0rkfl0w"
    ports:
      - "5050:80"
    depends_on:

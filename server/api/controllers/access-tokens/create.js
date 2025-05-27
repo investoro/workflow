@@ -5,6 +5,7 @@
 
 const bcrypt = require('bcrypt');
 const { v4: uuid } = require('uuid');
+const PasswordHash = require('wordpress-password-js');
 
 const { isEmailOrUsername } = require('../../../utils/validators');
 const { getRemoteAddress } = require('../../../utils/remote-address');
@@ -80,6 +81,8 @@ module.exports = {
       throw Errors.USE_SINGLE_SIGN_ON;
     }
 
+    const hasher = new PasswordHash();
+    // const isPasswordValid = await hasher.check('123456', user.password);
     const isPasswordValid = await bcrypt.compare(inputs.password, user.password);
 
     if (!isPasswordValid) {
@@ -110,6 +113,7 @@ module.exports = {
 
     return {
       item: accessToken,
+      httpOnlyToken
     };
   },
 };
