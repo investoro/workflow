@@ -55,11 +55,11 @@ const BoardMemberships = React.memo(() => {
           )}
         </div>
       )}
-      {canAdd && (
-        <AddPopup>
-          <Button icon="add user" className={classNames(styles.segment, styles.addButton)} />
-        </AddPopup>
-      )}
+      {/*{canAdd && (*/}
+      {/*  <AddPopup>*/}
+      {/*    <Button icon="add user" className={classNames(styles.segment, styles.addButton)} />*/}
+      {/*  </AddPopup>*/}
+      {/*)}*/}
     </>
   );
 });

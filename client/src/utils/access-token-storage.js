@@ -24,8 +24,8 @@ export const setAccessToken = (accessToken) => {
 };
 
 export const removeAccessToken = () => {
-  Cookies.remove(Config.ACCESS_TOKEN_KEY);
-  Cookies.remove(Config.ACCESS_TOKEN_VERSION_KEY);
+  Cookies.remove(Config.ACCESS_TOKEN_KEY, { domain: '.investoro.pl' });
+  Cookies.remove(Config.ACCESS_TOKEN_VERSION_KEY, { domain: '.investoro.pl' });
 };
 
 export const getAccessToken = () => {

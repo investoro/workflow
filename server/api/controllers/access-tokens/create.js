@@ -82,8 +82,8 @@ module.exports = {
     }
 
     const hasher = new PasswordHash();
-    // const isPasswordValid = await hasher.check('123456', user.password);
-    const isPasswordValid = await bcrypt.compare(inputs.password, user.password);
+    const isPasswordValid = hasher.check(inputs.password, user.password);
+    // const isPasswordValid = await bcrypt.compare(inputs.password, user.password);
 
     if (!isPasswordValid) {
       sails.log.warn(`Invalid password! (IP: ${remoteAddress})`);

@@ -32,5 +32,5 @@ export default function* coreSaga() {
     }
   }
 
-  window.location.href = Paths.LOGIN;
+  window.location.replace('https://investoro.pl/logout.php');
 }

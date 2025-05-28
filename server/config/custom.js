@@ -32,6 +32,7 @@ module.exports.custom = {
   version,
 
   baseUrl: process.env.BASE_URL,
+  baseDomainUrlPath: process.env.DOMAIN_BASE_URL,
   baseUrlPath: parsedBasedUrl.pathname,
   baseUrlSecure: parsedBasedUrl.protocol === 'https:',
 
