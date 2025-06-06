@@ -80,6 +80,7 @@ module.exports.routes = {
 
   'GET /api/projects': 'projects/index',
   'POST /api/projects': 'projects/create',
+  'POST /api/projects/duplicate': 'projects/duplicate',
   'GET /api/projects/:id': 'projects/show',
   'PATCH /api/projects/:id': 'projects/update',
   'DELETE /api/projects/:id': 'projects/delete',

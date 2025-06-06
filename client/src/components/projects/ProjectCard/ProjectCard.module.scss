@@ -47,6 +47,23 @@
     -webkit-box-orient: vertical;
   }
 
+  .duplicateButton {
+    background: none;
+    box-shadow: none;
+    height: 36px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 4px;
+    top: 40px;
+    width: 36px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.12);
+    }
+  }
+
   .favoriteButton {
     background: none;
     box-shadow: none;

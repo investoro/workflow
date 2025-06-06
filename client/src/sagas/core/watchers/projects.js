@@ -28,11 +28,17 @@ export default function* projectsWatchers() {
     takeEvery(EntryActionTypes.PROJECT_UPDATE, ({ payload: { id, data } }) =>
       services.updateProject(id, data),
     ),
+    takeEvery(EntryActionTypes.PROJECT_DUPLICATE, ({ payload: { id } }) =>
+      services.duplicateProject(id),
+    ),
     takeEvery(EntryActionTypes.CURRENT_PROJECT_UPDATE, ({ payload: { data } }) =>
       services.updateCurrentProject(data),
     ),
     takeEvery(EntryActionTypes.PROJECT_UPDATE_HANDLE, ({ payload: { project } }) =>
       services.handleProjectUpdate(project),
+    ),
+    takeEvery(EntryActionTypes.PROJECT_DUPLICATE_HANDLE, ({ payload: { project } }) =>
+      services.handleProjectDuplicate(project),
     ),
     takeEvery(EntryActionTypes.CURRENT_PROJECT_DELETE, () => services.deleteCurrentProject()),
     takeEvery(EntryActionTypes.PROJECT_DELETE_HANDLE, ({ payload: { project } }) =>

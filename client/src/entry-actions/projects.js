@@ -48,6 +48,13 @@ const updateProject = (id, data) => ({
   },
 });
 
+const duplicateProject = (id) => ({
+  type: EntryActionTypes.PROJECT_DUPLICATE,
+  payload: {
+    id,
+  },
+});
+
 const updateCurrentProject = (data) => ({
   type: EntryActionTypes.CURRENT_PROJECT_UPDATE,
   payload: {
@@ -57,6 +64,13 @@ const updateCurrentProject = (data) => ({
 
 const handleProjectUpdate = (project) => ({
   type: EntryActionTypes.PROJECT_UPDATE_HANDLE,
+  payload: {
+    project,
+  },
+});
+
+const handleProjectDuplicate = (project) => ({
+  type: EntryActionTypes.PROJECT_DUPLICATE_HANDLE,
   payload: {
     project,
   },
@@ -85,4 +99,6 @@ export default {
   handleProjectUpdate,
   deleteCurrentProject,
   handleProjectDelete,
+  duplicateProject,
+  handleProjectDuplicate
 };

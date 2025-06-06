@@ -80,6 +80,12 @@ const ProjectCard = React.memo(
       );
     }, [project, dispatch]);
 
+    const handleDuplicateProjectClick = useCallback(() => {
+      dispatch(
+        entryActions.duplicateProject(project.id),
+      );
+    }, [project, dispatch]);
+
     const withSidebar = withTypeIndicator || (withFavoriteButton && !project.isHidden);
 
     return (
@@ -158,6 +164,21 @@ const ProjectCard = React.memo(
             <Icon
               fitted
               name={project.isFavorite ? 'star' : 'star outline'}
+              className={classNames(styles.icon, styles.favoriteButtonIcon)}
+            />
+          </Button>
+        )}
+        {!project.isHidden && (
+          <Button
+            className={classNames(
+              styles.duplicateButton,
+              styles.favoriteButtonAppearable,
+            )}
+            onClick={handleDuplicateProjectClick}
+          >
+            <Icon
+              fitted
+              name={'copy outline'}
               className={classNames(styles.icon, styles.favoriteButtonIcon)}
             />
           </Button>

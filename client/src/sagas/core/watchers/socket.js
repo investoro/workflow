@@ -49,6 +49,10 @@ const createSocketEventsChannel = () =>
       emit(entryActions.handleProjectUpdate(item));
     };
 
+    const handleProjectDuplicate = ({ item }) => {
+      emit(entryActions.handleProjectDuplicate(item));
+    };
+
     const handleProjectDelete = ({ item }) => {
       emit(entryActions.handleProjectDelete(item));
     };
@@ -287,6 +291,7 @@ const createSocketEventsChannel = () =>
     socket.on('projectCreate', handleProjectCreate);
     socket.on('projectUpdate', handleProjectUpdate);
     socket.on('projectDelete', handleProjectDelete);
+    socket.on('projectDuplicate', handleProjectDuplicate);
 
     socket.on('projectManagerCreate', handleProjectManagerCreate);
     socket.on('projectManagerDelete', handleProjectManagerDelete);

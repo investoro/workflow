@@ -89,6 +89,14 @@ const Header = React.memo(() => {
     dispatch(entryActions.openProjectSettingsModal());
   }, [canEditProject, dispatch]);
 
+  const handleDuplicateProjectClick = useCallback(() => {
+    if (!canEditProject) {
+      return;
+    }
+
+    dispatch(entryActions.duplicateProject(project.id));
+  }, [canEditProject, dispatch]);
+
   const NotificationsPopup = usePopup(NotificationsStep, POPUP_PROPS);
   const UserPopup = usePopup(UserStep, POPUP_PROPS);
 
@@ -96,7 +104,7 @@ const Header = React.memo(() => {
     <div className={styles.wrapper}>
       {!project && (
         <Link to={Paths.ROOT} className={classNames(styles.logo, styles.title)}>
-          PLANKA
+          FLIPBOARD
         </Link>
       )}
       <Menu inverted size="large" className={styles.menu}>
@@ -114,6 +122,11 @@ const Header = React.memo(() => {
               {canEditProject && (
                 <Button className={styles.editButton} onClick={handleProjectSettingsClick}>
                   <Icon fitted name="pencil" size="small" />
+                </Button>
+              )}
+              {canEditProject && (
+                <Button className={styles.editButton} onClick={handleDuplicateProjectClick}>
+                  <Icon fitted name="copy" size="small" />
                 </Button>
               )}
             </Menu.Item>

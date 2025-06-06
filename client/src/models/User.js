@@ -289,6 +289,7 @@ export default class extends BaseModel {
         break;
       }
       case ActionTypes.PROJECT_CREATE_HANDLE:
+      case ActionTypes.PROJECT_DUPLICATE_HANDLE:
       case ActionTypes.PROJECT_MANAGER_CREATE_HANDLE:
       case ActionTypes.BOARD_FETCH__SUCCESS:
       case ActionTypes.CARDS_FETCH__SUCCESS:

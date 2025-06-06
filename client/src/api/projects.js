@@ -11,6 +11,8 @@ const getProjects = (headers) => socket.get('/projects', undefined, headers);
 
 const createProject = (data, headers) => socket.post('/projects', data, headers);
 
+const duplicateProject = (id, headers) => socket.post('/projects/duplicate', { id }, headers);
+
 const getProject = (id, headers) => socket.get(`/projects/${id}`, undefined, headers);
 
 const updateProject = (id, data, headers) => socket.patch(`/projects/${id}`, data, headers);
@@ -23,4 +25,5 @@ export default {
   getProject,
   updateProject,
   deleteProject,
+  duplicateProject
 };

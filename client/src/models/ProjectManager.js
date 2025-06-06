@@ -38,6 +38,7 @@ export default class extends BaseModel {
       case ActionTypes.CORE_INITIALIZE:
       case ActionTypes.PROJECT_CREATE__SUCCESS:
       case ActionTypes.PROJECT_CREATE_HANDLE:
+      case ActionTypes.PROJECT_DUPLICATE_HANDLE:
         payload.projectManagers.forEach((projectManager) => {
           ProjectManager.upsert(projectManager);
         });

@@ -73,6 +73,31 @@ const handleProjectCreate = (
   },
 });
 
+const handleProjectDuplicate = (
+  project,
+  users,
+  projectManagers,
+  backgroundImages,
+  baseCustomFieldGroups,
+  boards,
+  boardMemberships,
+  customFields,
+  notificationServices,
+) => ({
+  type: ActionTypes.PROJECT_DUPLICATE_HANDLE,
+  payload: {
+    project,
+    users,
+    projectManagers,
+    backgroundImages,
+    baseCustomFieldGroups,
+    boards,
+    boardMemberships,
+    customFields,
+    notificationServices,
+  },
+});
+
 const updateProject = (id, data) => ({
   type: ActionTypes.PROJECT_UPDATE,
   payload: {
@@ -90,6 +115,28 @@ updateProject.success = (project) => ({
 
 updateProject.failure = (id, error) => ({
   type: ActionTypes.PROJECT_UPDATE__FAILURE,
+  payload: {
+    id,
+    error,
+  },
+});
+
+const duplicateProject = (id) => ({
+  type: ActionTypes.PROJECT_DUPLICATE,
+  payload: {
+    id,
+  },
+});
+
+duplicateProject.success = (project) => ({
+  type: ActionTypes.PROJECT_DUPLICATE__SUCCESS,
+  payload: {
+    project,
+  },
+});
+
+duplicateProject.failure = (id, error) => ({
+  type: ActionTypes.PROJECT_DUPLICATE__FAILURE,
   payload: {
     id,
     error,
@@ -188,4 +235,6 @@ export default {
   handleProjectUpdate,
   deleteProject,
   handleProjectDelete,
+  duplicateProject,
+  handleProjectDuplicate
 };

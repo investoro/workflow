@@ -121,6 +121,21 @@ export function* updateProject(id, data) {
   yield put(actions.updateProject.success(project));
 }
 
+export function* duplicateProject(id) {
+  yield put(actions.duplicateProject(id));
+
+  let project;
+  try {
+    ({ item: project } = yield call(request, api.duplicateProject, id));
+  } catch (error) {
+    yield put(actions.duplicateProject.failure(id, error));
+    return;
+  }
+
+  yield put(actions.duplicateProject.success(project));
+  yield call(goToProject, project.id);
+}
+
 export function* updateCurrentProject(data) {
   const { projectId } = yield select(selectors.selectPath);
 
@@ -261,6 +276,50 @@ export function* handleProjectUpdate(project) {
   }
 }
 
+export function* handleProjectDuplicate({ id }) {
+  let project;
+  let users;
+  let projectManagers;
+  let backgroundImages;
+  let baseCustomFieldGroups;
+  let boards;
+  let boardMemberships;
+  let customFields;
+  let notificationServices;
+
+  try {
+    ({
+      item: project,
+      included: {
+        users,
+        projectManagers,
+        backgroundImages,
+        baseCustomFieldGroups,
+        boards,
+        boardMemberships,
+        customFields,
+        notificationServices,
+      },
+    } = yield call(request, api.getProject, id));
+  } catch {
+    return;
+  }
+
+  yield put(
+    actions.handleProjectDuplicate(
+      project,
+      users,
+      projectManagers,
+      backgroundImages,
+      baseCustomFieldGroups,
+      boards,
+      boardMemberships,
+      customFields,
+      notificationServices,
+    ),
+  );
+}
+
 export function* deleteProject(id) {
   const { projectId } = yield select(selectors.selectPath);
 
@@ -309,4 +368,6 @@ export default {
   deleteProject,
   deleteCurrentProject,
   handleProjectDelete,
+  duplicateProject,
+  handleProjectDuplicate
 };

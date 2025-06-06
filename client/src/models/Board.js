@@ -155,6 +155,7 @@ export default class extends BaseModel {
 
         break;
       case ActionTypes.PROJECT_CREATE_HANDLE:
+      case ActionTypes.PROJECT_DUPLICATE_HANDLE:
         payload.boards.forEach((board) => {
           Board.upsert(board);
         });
