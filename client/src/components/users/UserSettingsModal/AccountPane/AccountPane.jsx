@@ -77,50 +77,50 @@ const AccountPane = React.memo(() => {
         value={user.language || 'auto'}
         onChange={handleLanguageChange}
       />
-      {(isUsernameEditable || isEmailEditable || isPasswordEditable) && (
-        <>
-          <Divider horizontal section>
-            <Header as="h4">
-              {t('common.authentication', {
-                context: 'title',
-              })}
-            </Header>
-          </Divider>
-          {isUsernameEditable && (
-            <div className={styles.action}>
-              <EditUserUsernamePopup id={user.id} withPasswordConfirmation={!user.isSsoUser}>
-                <Button className={styles.actionButton}>
-                  {t('action.editUsername', {
-                    context: 'title',
-                  })}
-                </Button>
-              </EditUserUsernamePopup>
-            </div>
-          )}
-          {isEmailEditable && (
-            <div className={styles.action}>
-              <EditUserEmailPopup id={user.id} withPasswordConfirmation={!user.isSsoUser}>
-                <Button className={styles.actionButton}>
-                  {t('action.editEmail', {
-                    context: 'title',
-                  })}
-                </Button>
-              </EditUserEmailPopup>
-            </div>
-          )}
-          {isPasswordEditable && (
-            <div className={styles.action}>
-              <EditUserPasswordPopup id={user.id} withPasswordConfirmation={!user.isSsoUser}>
-                <Button className={styles.actionButton}>
-                  {t('action.editPassword', {
-                    context: 'title',
-                  })}
-                </Button>
-              </EditUserPasswordPopup>
-            </div>
-          )}
-        </>
-      )}
+      {/*{(isUsernameEditable || isEmailEditable || isPasswordEditable) && (*/}
+      {/*  <>*/}
+      {/*    <Divider horizontal section>*/}
+      {/*      <Header as="h4">*/}
+      {/*        {t('common.authentication', {*/}
+      {/*          context: 'title',*/}
+      {/*        })}*/}
+      {/*      </Header>*/}
+      {/*    </Divider>*/}
+      {/*    {isUsernameEditable && (*/}
+      {/*      <div className={styles.action}>*/}
+      {/*        <EditUserUsernamePopup id={user.id} withPasswordConfirmation={!user.isSsoUser}>*/}
+      {/*          <Button className={styles.actionButton}>*/}
+      {/*            {t('action.editUsername', {*/}
+      {/*              context: 'title',*/}
+      {/*            })}*/}
+      {/*          </Button>*/}
+      {/*        </EditUserUsernamePopup>*/}
+      {/*      </div>*/}
+      {/*    )}*/}
+      {/*    {isEmailEditable && (*/}
+      {/*      <div className={styles.action}>*/}
+      {/*        <EditUserEmailPopup id={user.id} withPasswordConfirmation={!user.isSsoUser}>*/}
+      {/*          <Button className={styles.actionButton}>*/}
+      {/*            {t('action.editEmail', {*/}
+      {/*              context: 'title',*/}
+      {/*            })}*/}
+      {/*          </Button>*/}
+      {/*        </EditUserEmailPopup>*/}
+      {/*      </div>*/}
+      {/*    )}*/}
+      {/*    {isPasswordEditable && (*/}
+      {/*      <div className={styles.action}>*/}
+      {/*        <EditUserPasswordPopup id={user.id} withPasswordConfirmation={!user.isSsoUser}>*/}
+      {/*          <Button className={styles.actionButton}>*/}
+      {/*            {t('action.editPassword', {*/}
+      {/*              context: 'title',*/}
+      {/*            })}*/}
+      {/*          </Button>*/}
+      {/*        </EditUserPasswordPopup>*/}
+      {/*      </div>*/}
+      {/*    )}*/}
+      {/*  </>*/}
+      {/*)}*/}
     </Tab.Pane>
   );
 });

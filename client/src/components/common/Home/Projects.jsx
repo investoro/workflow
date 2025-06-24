@@ -16,10 +16,16 @@ import ProjectCard from '../../projects/ProjectCard';
 import PlusIcon from '../../../assets/images/plus-icon.svg?react';
 
 import styles from './Projects.module.scss';
+import { UserRoles } from '../../../constants/Enums.js';
 
 const Projects = React.memo(({ ids, title, titleIcon, withTypeIndicator, onAdd }) => {
   const canAdd = useSelector((state) => {
     const user = selectors.selectCurrentUser(state);
+
+    if ([UserRoles.BOARD_USER].includes(user.role)) {
+      return true;
+    }
+
     return isUserAdminOrProjectOwner(user);
   });
 
