@@ -25,5 +25,5 @@ export default {
   getProject,
   updateProject,
   deleteProject,
-  duplicateProject
+  duplicateProject,
 };

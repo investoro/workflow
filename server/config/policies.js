@@ -21,7 +21,7 @@ module.exports.policies = {
   'users/create': ['is-authenticated', 'is-admin'],
   'users/delete': ['is-authenticated', 'is-admin'],
 
-  'projects/create': ['is-authenticated', 'is-admin-or-project-owner'],
+  'projects/create': ['is-authenticated', 'is-admin-or-project-owner-or-board-user'],
 
   'config/show': true,
   'access-tokens/create': true,
