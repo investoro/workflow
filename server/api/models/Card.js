@@ -52,6 +52,11 @@ module.exports = {
       type: 'ref',
       columnName: 'list_changed_at',
     },
+    isClosed: {
+      type: 'boolean',
+      defaultsTo: false,
+      columnName: 'is_closed',
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

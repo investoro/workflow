@@ -1,4 +1,4 @@
-module.exports = async function (req, res, proceed) {
+module.exports = async (req, res, proceed) => {
   if (req.currentUser && ['admin', 'projectOwner', 'boardUser'].includes(req.currentUser.role)) {
     return proceed();
   }

@@ -9,7 +9,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Checkbox, Icon } from 'semantic-ui-react';
 import { push } from '../../../lib/redux-router';
 import { usePopup } from '../../../lib/popup';
 
@@ -24,6 +24,7 @@ import ActionsStep from './ActionsStep';
 
 import styles from './Card.module.scss';
 import globalStyles from '../../../styles.module.scss';
+import entryActions from '../../../entry-actions/index';
 
 const Card = React.memo(({ id, isInline }) => {
   const selectCardById = useMemo(() => selectors.makeSelectCardById(), []);
@@ -50,6 +51,8 @@ const Card = React.memo(({ id, isInline }) => {
 
   const dispatch = useDispatch();
   const [isEditNameOpened, setIsEditNameOpened] = useState(false);
+  const [isClosed, setIsClosed] = useState(card.isClosed);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = useCallback(() => {
     if (document.activeElement) {
@@ -66,6 +69,23 @@ const Card = React.memo(({ id, isInline }) => {
   const handleEditNameClose = useCallback(() => {
     setIsEditNameOpened(false);
   }, []);
+
+  const handleCheckboxChange = useCallback(
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const checked = !card.isClosed;
+      setIsLoading(true);
+      dispatch(
+        entryActions.updateCard(card.id, {
+          isClosed: checked,
+        }),
+      );
+      setIsClosed(checked);
+    },
+    [card.id, card.isClosed, dispatch],
+  );
 
   const ActionsPopup = usePopup(ActionsStep);
 
@@ -115,6 +135,15 @@ const Card = React.memo(({ id, isInline }) => {
           <div className={styles.content} onClick={handleClick}>
             <Content cardId={id} />
             {colorLineNode}
+            <span className={styles.checkboxWrapper}>
+              <Checkbox
+                checked={isClosed}
+                disabled={isLoading}
+                className={styles.checkbox}
+                onChange={handleCheckboxChange}
+              />
+              Zamknij zadanie
+            </span>
           </div>
           {canUseActions && (
             <ActionsPopup cardId={id} onNameEdit={handleNameEdit}>

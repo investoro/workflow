@@ -28,6 +28,18 @@
     }
   }
 
+  .checkboxWrapper {
+    display: inline-block;
+    padding: 10px 15px 0px 8px;
+    text-align: center;
+    top: 0;
+    left: 0;
+    vertical-align: top;
+    z-index: 2000;
+    line-height: 1;
+    height: 100%;
+  }
+
   .colorLine {
     border-radius: 0 0 3px 3px;
     height: 4px;

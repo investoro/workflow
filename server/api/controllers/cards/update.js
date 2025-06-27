@@ -77,6 +77,10 @@ module.exports = {
     isSubscribed: {
       type: 'boolean',
     },
+    isClosed: {
+      type: 'boolean',
+      allowNull: true,
+    },
   },
 
   exits: {
@@ -137,6 +141,7 @@ module.exports = {
         'description',
         'dueDate',
         'stopwatch',
+        'isClosed',
       );
     }
 
@@ -197,6 +202,7 @@ module.exports = {
       'dueDate',
       'stopwatch',
       'isSubscribed',
+      'isClosed',
     ]);
 
     card = await sails.helpers.cards.updateOne
