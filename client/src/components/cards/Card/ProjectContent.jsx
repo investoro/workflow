@@ -3,11 +3,11 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { Icon } from 'semantic-ui-react';
+import { Checkbox, Icon } from 'semantic-ui-react';
 
 import selectors from '../../../selectors';
 import entryActions from '../../../entry-actions';
@@ -142,9 +142,40 @@ const ProjectContent = React.memo(({ cardId }) => {
       </span>
     ) : null;
 
+  const [isClosed, setIsClosed] = useState(card.isClosed);
+  const [isLoading, setIsLoading] = useState(false);
+  const handleCheckboxChange = useCallback(
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const checked = !card.isClosed;
+      setIsLoading(true);
+      dispatch(
+        entryActions.updateCard(card.id, {
+          isClosed: checked,
+        }),
+      );
+      setIsClosed(checked);
+      setIsLoading(false);
+    },
+    [card.id, card.isClosed, dispatch],
+  );
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.name}>{card.name}</div>
+      <div className={classNames(styles.name, { [styles.closed]: isClosed })}>
+        <span className={styles.checkboxWrapper}>
+          <Checkbox
+            checked={isClosed}
+            disabled={isLoading}
+            className={classNames({ [styles.checkbox]: isClosed })}
+            onClick={(e) => e.stopPropagation()}
+            onChange={handleCheckboxChange}
+          />
+        </span>
+        {card.name}
+      </div>
       {coverUrl && (
         <div className={styles.coverWrapper}>
           <img src={coverUrl} alt="" className={styles.cover} />

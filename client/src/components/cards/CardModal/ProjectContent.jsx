@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button, Grid, Icon } from 'semantic-ui-react';
+import { Button, Checkbox, Grid, Icon } from 'semantic-ui-react';
 import { useDidUpdate } from '../../../lib/hooks';
 
 import selectors from '../../../selectors';
@@ -313,6 +313,26 @@ const ProjectContent = React.memo(({ onClose }) => {
   const MoveCardPopup = usePopupInClosableContext(MoveCardStep);
   const ConfirmationPopup = usePopupInClosableContext(ConfirmationStep);
 
+  const [isClosed, setIsClosed] = useState(card.isClosed);
+  const [isLoading, setIsLoading] = useState(false);
+  const handleCheckboxChange = useCallback(
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const checked = !card.isClosed;
+      setIsLoading(true);
+      dispatch(
+        entryActions.updateCard(card.id, {
+          isClosed: checked,
+        }),
+      );
+      setIsClosed(checked);
+      setIsLoading(false);
+    },
+    [card.id, card.isClosed, dispatch],
+  );
+
   return (
     <Grid className={styles.wrapper}>
       <Grid.Row className={styles.headerPadding}>
@@ -320,6 +340,15 @@ const ProjectContent = React.memo(({ onClose }) => {
           <div className={styles.headerWrapper}>
             <Icon name={CardTypeIcons[CardTypes.PROJECT]} className={styles.moduleIcon} />
             <div className={styles.headerTitleWrapper}>
+              <span className={styles.checkboxWrapper}>
+                <Checkbox
+                  checked={isClosed}
+                  disabled={isLoading}
+                  className={classNames({ [styles.checkbox]: isClosed })}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={handleCheckboxChange}
+                />
+              </span>
               {canEditName ? (
                 <NameField defaultValue={card.name} onUpdate={handleNameUpdate} />
               ) : (

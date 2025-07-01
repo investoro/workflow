@@ -183,6 +183,20 @@
   .headerTitleWrapper {
     margin: 4px 0;
     padding: 6px 0 0;
+    display: grid;
+    align-items: center;
+    grid-template-columns: min-content 1fr;
+    gap: 10px;
+  }
+
+  .checkbox {
+    label::before {
+      background: #2ABB7F;
+    }
+
+    label::after {
+      color: #21272b;
+    }
   }
 
   .headerWrapper {
