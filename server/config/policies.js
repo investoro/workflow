@@ -26,4 +26,5 @@ module.exports.policies = {
   'config/show': true,
   'access-tokens/create': true,
   'access-tokens/exchange-with-oidc': true,
+  'access-tokens/sso-login': true,
 };

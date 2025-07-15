@@ -66,6 +66,7 @@ module.exports.routes = {
 
   'POST /api/access-tokens': 'access-tokens/create',
   'POST /api/access-tokens/exchange-with-oidc': 'access-tokens/exchange-with-oidc',
+  'POST /api/access-tokens/sso-login': 'access-tokens/sso-login',
   'DELETE /api/access-tokens/me': 'access-tokens/delete',
 
   'GET /api/users': 'users/index',
