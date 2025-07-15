@@ -3,7 +3,6 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-const bcrypt = require('bcrypt');
 const { v4: uuid } = require('uuid');
 const PasswordHash = require('wordpress-password-js');
 
@@ -113,7 +112,7 @@ module.exports = {
 
     return {
       item: accessToken,
-      httpOnlyToken
+      httpOnlyToken,
     };
   },
 };

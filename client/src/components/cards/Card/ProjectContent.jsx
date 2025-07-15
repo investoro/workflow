@@ -3,7 +3,7 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -110,6 +110,21 @@ const ProjectContent = React.memo(({ cardId }) => {
     [cardId, card.stopwatch, dispatch],
   );
 
+  const handleCheckboxChange = useCallback(
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const checked = !card.isClosed;
+      dispatch(
+        entryActions.updateCard(card.id, {
+          isClosed: checked,
+        }),
+      );
+    },
+    [card.id, card.isClosed, dispatch],
+  );
+
   const hasInformation =
     card.description ||
     card.dueDate ||
@@ -142,34 +157,14 @@ const ProjectContent = React.memo(({ cardId }) => {
       </span>
     ) : null;
 
-  const [isClosed, setIsClosed] = useState(card.isClosed);
-  const [isLoading, setIsLoading] = useState(false);
-  const handleCheckboxChange = useCallback(
-    (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const checked = !card.isClosed;
-      setIsLoading(true);
-      dispatch(
-        entryActions.updateCard(card.id, {
-          isClosed: checked,
-        }),
-      );
-      setIsClosed(checked);
-      setIsLoading(false);
-    },
-    [card.id, card.isClosed, dispatch],
-  );
-
   return (
     <div className={styles.wrapper}>
-      <div className={classNames(styles.name, { [styles.closed]: isClosed })}>
+      <div className={classNames(styles.name, { [styles.closed]: card.isClosed })}>
         <span className={styles.checkboxWrapper}>
           <Checkbox
-            checked={isClosed}
-            disabled={isLoading}
-            className={classNames({ [styles.checkbox]: isClosed })}
+            checked={card.isClosed}
+            disabled={false}
+            className={classNames({ [styles.checkbox]: card.isClosed })}
             onClick={(e) => e.stopPropagation()}
             onChange={handleCheckboxChange}
           />
