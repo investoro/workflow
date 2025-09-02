@@ -60,7 +60,7 @@ const AddProjectFromTemplateModal = React.memo(() => {
 
     dispatch(
       entryActions.createProjectFromTemplate({
-        templateId: 0,
+        templateId: 1,
         data: cleanData,
       }),
     );

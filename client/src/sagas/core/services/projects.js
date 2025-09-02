@@ -70,8 +70,8 @@ export function* createProjectFromTemplate({ data }) {
       item: project,
       included: { projectManagers },
     } = yield call(request, api.createProjectFromTemplate, templateId, projectData));
-
     yield put(actions.createProject.success(project, projectManagers));
+
     yield call(goToProject, project.id);
 
     return { project, projectManagers };
