@@ -57,6 +57,30 @@ export function* createProject(data) {
   yield call(goToProject, project.id);
 }
 
+export function* createProjectFromTemplate({ data }) {
+  const { templateId, ...projectData } = data;
+
+  yield put(actions.createProject(omit(projectData, 'type')));
+
+  let project;
+  let projectManagers;
+
+  try {
+    ({
+      item: project,
+      included: { projectManagers },
+    } = yield call(request, api.createProjectFromTemplate, templateId, projectData));
+
+    yield put(actions.createProject.success(project, projectManagers));
+    yield call(goToProject, project.id);
+
+    return { project, projectManagers };
+  } catch (error) {
+    yield put(actions.createProject.failure(error));
+    return null;
+  }
+}
+
 export function* handleProjectCreate({ id }) {
   let project;
   let users;
@@ -361,6 +385,7 @@ export default {
   updateProjectsOrder,
   toggleHiddenProjects,
   createProject,
+  createProjectFromTemplate,
   handleProjectCreate,
   updateProject,
   updateCurrentProject,
@@ -369,5 +394,5 @@ export default {
   deleteCurrentProject,
   handleProjectDelete,
   duplicateProject,
-  handleProjectDuplicate
+  handleProjectDuplicate,
 };

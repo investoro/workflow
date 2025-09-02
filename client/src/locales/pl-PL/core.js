@@ -178,6 +178,7 @@ export default {
       createLabel: 'Utwórz oznaczenie',
       createNewLabel: 'Utwórz nowe oznaczenie',
       createProject: 'Utwórz projekt',
+      createProjectFromTemplate: 'Utwórz projekt według procesu flipowego Daniela Siwca',
       delete: 'Usuń',
       deleteAttachment: 'Usuń załącznik',
       deleteAvatar: 'Usuń avatar',

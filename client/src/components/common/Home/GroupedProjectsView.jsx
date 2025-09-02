@@ -42,6 +42,13 @@ const GroupedProjectsView = React.memo(() => {
     [dispatch],
   );
 
+  const handleAddFromTemplate = useCallback(
+    (defaultType) => {
+      dispatch(entryActions.openAddProjectFromTemplateModal(defaultType));
+    },
+    [dispatch],
+  );
+
   return (
     <>
       {[ProjectGroups.MY_OWN, ProjectGroups.TEAM].map(
@@ -53,6 +60,7 @@ const GroupedProjectsView = React.memo(() => {
               title={TITLE_BY_GROUP[group]}
               titleIcon={ProjectGroupIcons[group]}
               onAdd={() => handleAdd(DEFAULT_TYPE_BY_GROUP[group])}
+              onAddFromTemplate={() => handleAddFromTemplate(DEFAULT_TYPE_BY_GROUP[group])}
             />
           ),
       )}

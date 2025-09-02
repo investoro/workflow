@@ -95,7 +95,7 @@ const Header = React.memo(() => {
     }
 
     dispatch(entryActions.duplicateProject(project.id));
-  }, [canEditProject, dispatch]);
+  }, [canEditProject, dispatch, project.id]);
 
   const NotificationsPopup = usePopup(NotificationsStep, POPUP_PROPS);
   const UserPopup = usePopup(UserStep, POPUP_PROPS);

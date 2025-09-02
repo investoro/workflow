@@ -9,7 +9,12 @@ import socket from './socket';
 
 const getProjects = (headers) => socket.get('/projects', undefined, headers);
 
+const getTemplates = (headers) => socket.get('/projects/templates', undefined, headers);
+
 const createProject = (data, headers) => socket.post('/projects', data, headers);
+
+const createProjectFromTemplate = (templateId, data, headers) =>
+  socket.post(`/projects/from-template/${templateId}`, data, headers);
 
 const duplicateProject = (id, headers) => socket.post('/projects/duplicate', { id }, headers);
 
@@ -21,7 +26,9 @@ const deleteProject = (id, headers) => socket.delete(`/projects/${id}`, undefine
 
 export default {
   getProjects,
+  getTemplates,
   createProject,
+  createProjectFromTemplate,
   getProject,
   updateProject,
   deleteProject,

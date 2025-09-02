@@ -33,6 +33,16 @@ const createProject = (data) => ({
   },
 });
 
+const createProjectFromTemplate = ({ templateId, data }) => ({
+  type: EntryActionTypes.PROJECT_CREATE_FROM_TEMPLATE,
+  payload: {
+    data: {
+      ...data,
+      templateId,
+    },
+  },
+});
+
 const handleProjectCreate = (project) => ({
   type: EntryActionTypes.PROJECT_CREATE_HANDLE,
   payload: {
@@ -93,6 +103,7 @@ export default {
   updateProjectsOrder,
   toggleHiddenProjects,
   createProject,
+  createProjectFromTemplate,
   handleProjectCreate,
   updateProject,
   updateCurrentProject,
@@ -100,5 +111,5 @@ export default {
   deleteCurrentProject,
   handleProjectDelete,
   duplicateProject,
-  handleProjectDuplicate
+  handleProjectDuplicate,
 };

@@ -6,15 +6,15 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button, Divider, Dropdown, Header, Tab } from 'semantic-ui-react';
+import { Divider, Dropdown, Header, Tab } from 'semantic-ui-react';
 
 import { usePopupInClosableContext } from '../../../../hooks';
 import locales from '../../../../locales';
 import EditAvatarStep from './EditAvatarStep';
 import EditUserInformation from '../../EditUserInformation';
-import EditUserUsernameStep from '../../EditUserUsernameStep';
-import EditUserEmailStep from '../../EditUserEmailStep';
-import EditUserPasswordStep from '../../EditUserPasswordStep';
+// import EditUserUsernameStep from '../../EditUserUsernameStep';
+// import EditUserEmailStep from '../../EditUserEmailStep';
+// import EditUserPasswordStep from '../../EditUserPasswordStep';
 import UserAvatar from '../../UserAvatar';
 
 import selectors from '../../../../selectors';
@@ -37,13 +37,13 @@ const AccountPane = React.memo(() => {
   );
 
   const EditAvatarPopup = usePopupInClosableContext(EditAvatarStep);
-  const EditUserUsernamePopup = usePopupInClosableContext(EditUserUsernameStep);
-  const EditUserEmailPopup = usePopupInClosableContext(EditUserEmailStep);
-  const EditUserPasswordPopup = usePopupInClosableContext(EditUserPasswordStep);
-
-  const isUsernameEditable = !user.lockedFieldNames.includes('username');
-  const isEmailEditable = !user.lockedFieldNames.includes('email');
-  const isPasswordEditable = !user.lockedFieldNames.includes('password');
+  // const EditUserUsernamePopup = usePopupInClosableContext(EditUserUsernameStep);
+  // const EditUserEmailPopup = usePopupInClosableContext(EditUserEmailStep);
+  // const EditUserPasswordPopup = usePopupInClosableContext(EditUserPasswordStep);
+  //
+  // const isUsernameEditable = !user.lockedFieldNames.includes('username');
+  // const isEmailEditable = !user.lockedFieldNames.includes('email');
+  // const isPasswordEditable = !user.lockedFieldNames.includes('password');
 
   return (
     <Tab.Pane attached={false} className={styles.wrapper}>
@@ -77,50 +77,50 @@ const AccountPane = React.memo(() => {
         value={user.language || 'auto'}
         onChange={handleLanguageChange}
       />
-      {/*{(isUsernameEditable || isEmailEditable || isPasswordEditable) && (*/}
-      {/*  <>*/}
-      {/*    <Divider horizontal section>*/}
-      {/*      <Header as="h4">*/}
-      {/*        {t('common.authentication', {*/}
-      {/*          context: 'title',*/}
-      {/*        })}*/}
-      {/*      </Header>*/}
-      {/*    </Divider>*/}
-      {/*    {isUsernameEditable && (*/}
-      {/*      <div className={styles.action}>*/}
-      {/*        <EditUserUsernamePopup id={user.id} withPasswordConfirmation={!user.isSsoUser}>*/}
-      {/*          <Button className={styles.actionButton}>*/}
-      {/*            {t('action.editUsername', {*/}
-      {/*              context: 'title',*/}
-      {/*            })}*/}
-      {/*          </Button>*/}
-      {/*        </EditUserUsernamePopup>*/}
-      {/*      </div>*/}
-      {/*    )}*/}
-      {/*    {isEmailEditable && (*/}
-      {/*      <div className={styles.action}>*/}
-      {/*        <EditUserEmailPopup id={user.id} withPasswordConfirmation={!user.isSsoUser}>*/}
-      {/*          <Button className={styles.actionButton}>*/}
-      {/*            {t('action.editEmail', {*/}
-      {/*              context: 'title',*/}
-      {/*            })}*/}
-      {/*          </Button>*/}
-      {/*        </EditUserEmailPopup>*/}
-      {/*      </div>*/}
-      {/*    )}*/}
-      {/*    {isPasswordEditable && (*/}
-      {/*      <div className={styles.action}>*/}
-      {/*        <EditUserPasswordPopup id={user.id} withPasswordConfirmation={!user.isSsoUser}>*/}
-      {/*          <Button className={styles.actionButton}>*/}
-      {/*            {t('action.editPassword', {*/}
-      {/*              context: 'title',*/}
-      {/*            })}*/}
-      {/*          </Button>*/}
-      {/*        </EditUserPasswordPopup>*/}
-      {/*      </div>*/}
-      {/*    )}*/}
-      {/*  </>*/}
-      {/*)}*/}
+      {/* {(isUsernameEditable || isEmailEditable || isPasswordEditable) && ( */}
+      {/*  <> */}
+      {/*    <Divider horizontal section> */}
+      {/*      <Header as="h4"> */}
+      {/*        {t('common.authentication', { */}
+      {/*          context: 'title', */}
+      {/*        })} */}
+      {/*      </Header> */}
+      {/*    </Divider> */}
+      {/*    {isUsernameEditable && ( */}
+      {/*      <div className={styles.action}> */}
+      {/*        <EditUserUsernamePopup id={user.id} withPasswordConfirmation={!user.isSsoUser}> */}
+      {/*          <Button className={styles.actionButton}> */}
+      {/*            {t('action.editUsername', { */}
+      {/*              context: 'title', */}
+      {/*            })} */}
+      {/*          </Button> */}
+      {/*        </EditUserUsernamePopup> */}
+      {/*      </div> */}
+      {/*    )} */}
+      {/*    {isEmailEditable && ( */}
+      {/*      <div className={styles.action}> */}
+      {/*        <EditUserEmailPopup id={user.id} withPasswordConfirmation={!user.isSsoUser}> */}
+      {/*          <Button className={styles.actionButton}> */}
+      {/*            {t('action.editEmail', { */}
+      {/*              context: 'title', */}
+      {/*            })} */}
+      {/*          </Button> */}
+      {/*        </EditUserEmailPopup> */}
+      {/*      </div> */}
+      {/*    )} */}
+      {/*    {isPasswordEditable && ( */}
+      {/*      <div className={styles.action}> */}
+      {/*        <EditUserPasswordPopup id={user.id} withPasswordConfirmation={!user.isSsoUser}> */}
+      {/*          <Button className={styles.actionButton}> */}
+      {/*            {t('action.editPassword', { */}
+      {/*              context: 'title', */}
+      {/*            })} */}
+      {/*          </Button> */}
+      {/*        </EditUserPasswordPopup> */}
+      {/*      </div> */}
+      {/*    )} */}
+      {/*  </> */}
+      {/* )} */}
     </Tab.Pane>
   );
 });

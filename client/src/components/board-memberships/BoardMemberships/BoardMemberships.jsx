@@ -7,36 +7,36 @@ import groupBy from 'lodash/groupBy';
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import { Button } from 'semantic-ui-react';
-import { usePopup } from '../../../lib/popup';
+// import { Button } from 'semantic-ui-react';
+// import { usePopup } from '../../../lib/popup';
 
 import selectors from '../../../selectors';
-import { isUserAdminOrProjectOwner } from '../../../utils/record-helpers';
+// import { isUserAdminOrProjectOwner } from '../../../utils/record-helpers';
 import { BoardMembershipRoles } from '../../../constants/Enums';
 import Group from './Group';
-import AddStep from './AddStep';
+// import AddStep from './AddStep';
 
 import styles from './BoardMemberships.module.scss';
 
 const BoardMemberships = React.memo(() => {
   const boardMemberships = useSelector(selectors.selectMembershipsForCurrentBoard);
 
-  const canAdd = useSelector((state) => {
-    const user = selectors.selectCurrentUser(state);
-
-    if (!isUserAdminOrProjectOwner(user)) {
-      return !selectors.selectCurrentUserMembershipForCurrentBoard(state);
-    }
-
-    return selectors.selectIsCurrentUserManagerForCurrentProject(state);
-  });
+  // const canAdd = useSelector((state) => {
+  //   const user = selectors.selectCurrentUser(state);
+  //
+  //   if (!isUserAdminOrProjectOwner(user)) {
+  //     return !selectors.selectCurrentUserMembershipForCurrentBoard(state);
+  //   }
+  //
+  //   return selectors.selectIsCurrentUserManagerForCurrentProject(state);
+  // });
 
   const boardMembershipsByRole = useMemo(
     () => groupBy(boardMemberships, 'role'),
     [boardMemberships],
   );
 
-  const AddPopup = usePopup(AddStep);
+  // const AddPopup = usePopup(AddStep);
 
   return (
     <>
@@ -55,11 +55,11 @@ const BoardMemberships = React.memo(() => {
           )}
         </div>
       )}
-      {/*{canAdd && (*/}
-      {/*  <AddPopup>*/}
-      {/*    <Button icon="add user" className={classNames(styles.segment, styles.addButton)} />*/}
-      {/*  </AddPopup>*/}
-      {/*)}*/}
+      {/* {canAdd && ( */}
+      {/*  <AddPopup> */}
+      {/*    <Button icon="add user" className={classNames(styles.segment, styles.addButton)} /> */}
+      {/*  </AddPopup> */}
+      {/* )} */}
     </>
   );
 });

@@ -337,6 +337,7 @@ export default {
       createLabel: 'Create label',
       createNewLabel: 'Create new label',
       createProject: 'Create project',
+      createProjectFromTemplate: 'Create project according to Daniel Siwiec flip process',
       deactivateUser: 'Deactivate user',
       deactivateUser_title: 'Deactivate User',
       delete: 'Delete',

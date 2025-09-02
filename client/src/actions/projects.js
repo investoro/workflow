@@ -236,5 +236,5 @@ export default {
   deleteProject,
   handleProjectDelete,
   duplicateProject,
-  handleProjectDuplicate
+  handleProjectDuplicate,
 };

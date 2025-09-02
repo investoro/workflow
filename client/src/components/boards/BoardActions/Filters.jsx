@@ -16,8 +16,8 @@ import { Input } from '../../../lib/custom-ui';
 import selectors from '../../../selectors';
 import entryActions from '../../../entry-actions';
 import { useNestedRef } from '../../../hooks';
-import UserAvatar from '../../users/UserAvatar';
-import BoardMembershipsStep from '../../board-memberships/BoardMembershipsStep';
+// import UserAvatar from '../../users/UserAvatar';
+// import BoardMembershipsStep from '../../board-memberships/BoardMembershipsStep';
 import LabelChip from '../../labels/LabelChip';
 import LabelsStep from '../../labels/LabelsStep';
 
@@ -25,13 +25,13 @@ import styles from './Filters.module.scss';
 
 const Filters = React.memo(() => {
   const board = useSelector(selectors.selectCurrentBoard);
-  const userIds = useSelector(selectors.selectFilterUserIdsForCurrentBoard);
+  // const userIds = useSelector(selectors.selectFilterUserIdsForCurrentBoard);
   const labelIds = useSelector(selectors.selectFilterLabelIdsForCurrentBoard);
-  const currentUserId = useSelector(selectors.selectCurrentUserId);
+  // const currentUserId = useSelector(selectors.selectCurrentUserId);
 
-  const withCurrentUserSelector = useSelector(
-    (state) => !!selectors.selectCurrentUserMembershipForCurrentBoard(state),
-  );
+  // const withCurrentUserSelector = useSelector(
+  //   (state) => !!selectors.selectCurrentUserMembershipForCurrentBoard(state),
+  // );
 
   const dispatch = useDispatch();
   const [t] = useTranslation();
@@ -55,34 +55,34 @@ const Filters = React.memo(() => {
     searchFieldRef.current.blur();
   }, [dispatch, debouncedSearch, searchFieldRef]);
 
-  const handleUserSelect = useCallback(
-    (userId) => {
-      dispatch(entryActions.addUserToFilterInCurrentBoard(userId));
-    },
-    [dispatch],
-  );
+  // const handleUserSelect = useCallback(
+  //   (userId) => {
+  //     dispatch(entryActions.addUserToFilterInCurrentBoard(userId));
+  //   },
+  //   [dispatch],
+  // );
+  //
+  // const handleCurrentUserSelect = useCallback(() => {
+  //   dispatch(entryActions.addUserToFilterInCurrentBoard(currentUserId));
+  // }, [currentUserId, dispatch]);
+  //
+  // const handleUserDeselect = useCallback(
+  //   (userId) => {
+  //     dispatch(entryActions.removeUserFromFilterInCurrentBoard(userId));
+  //   },
+  //   [dispatch],
+  // );
 
-  const handleCurrentUserSelect = useCallback(() => {
-    dispatch(entryActions.addUserToFilterInCurrentBoard(currentUserId));
-  }, [currentUserId, dispatch]);
-
-  const handleUserDeselect = useCallback(
-    (userId) => {
-      dispatch(entryActions.removeUserFromFilterInCurrentBoard(userId));
-    },
-    [dispatch],
-  );
-
-  const handleUserClick = useCallback(
-    ({
-      currentTarget: {
-        dataset: { id: userId },
-      },
-    }) => {
-      dispatch(entryActions.removeUserFromFilterInCurrentBoard(userId));
-    },
-    [dispatch],
-  );
+  // const handleUserClick = useCallback(
+  //   ({
+  //     currentTarget: {
+  //       dataset: { id: userId },
+  //     },
+  //   }) => {
+  //     dispatch(entryActions.removeUserFromFilterInCurrentBoard(userId));
+  //   },
+  //   [dispatch],
+  // );
 
   const handleLabelSelect = useCallback(
     (labelId) => {
@@ -142,38 +142,38 @@ const Filters = React.memo(() => {
     setSearch(board.search);
   }, [board.search]);
 
-  const BoardMembershipsPopup = usePopup(BoardMembershipsStep);
+  // const BoardMembershipsPopup = usePopup(BoardMembershipsStep);
   const LabelsPopup = usePopup(LabelsStep);
 
   const isSearchActive = search || isSearchFocused;
 
   return (
     <>
-      {/*<span className={styles.filter}>*/}
-      {/*  <BoardMembershipsPopup*/}
-      {/*    currentUserIds={userIds}*/}
-      {/*    title="common.filterByMembers"*/}
-      {/*    onUserSelect={handleUserSelect}*/}
-      {/*    onUserDeselect={handleUserDeselect}*/}
-      {/*  >*/}
-      {/*    <button type="button" className={styles.filterButton}>*/}
-      {/*      <span className={styles.filterTitle}>{`${t('common.members')}:`}</span>*/}
-      {/*      {userIds.length === 0 && <span className={styles.filterLabel}>{t('common.all')}</span>}*/}
-      {/*    </button>*/}
-      {/*  </BoardMembershipsPopup>*/}
-      {/*  {userIds.length === 0 && withCurrentUserSelector && (*/}
-      {/*    <button type="button" className={styles.filterButton} onClick={handleCurrentUserSelect}>*/}
-      {/*      <span className={styles.filterLabel}>*/}
-      {/*        <Icon fitted name="target" className={styles.filterLabelIcon} />*/}
-      {/*      </span>*/}
-      {/*    </button>*/}
-      {/*  )}*/}
-      {/*  {userIds.map((userId) => (*/}
-      {/*    <span key={userId} className={styles.filterItem}>*/}
-      {/*      <UserAvatar id={userId} size="tiny" onClick={handleUserClick} />*/}
-      {/*    </span>*/}
-      {/*  ))}*/}
-      {/*</span>*/}
+      {/* <span className={styles.filter}> */}
+      {/*  <BoardMembershipsPopup */}
+      {/*    currentUserIds={userIds} */}
+      {/*    title="common.filterByMembers" */}
+      {/*    onUserSelect={handleUserSelect} */}
+      {/*    onUserDeselect={handleUserDeselect} */}
+      {/*  > */}
+      {/*    <button type="button" className={styles.filterButton}> */}
+      {/*      <span className={styles.filterTitle}>{`${t('common.members')}:`}</span> */}
+      {/*      {userIds.length === 0 && <span className={styles.filterLabel}>{t('common.all')}</span>} */}
+      {/*    </button> */}
+      {/*  </BoardMembershipsPopup> */}
+      {/*  {userIds.length === 0 && withCurrentUserSelector && ( */}
+      {/*    <button type="button" className={styles.filterButton} onClick={handleCurrentUserSelect}> */}
+      {/*      <span className={styles.filterLabel}> */}
+      {/*        <Icon fitted name="target" className={styles.filterLabelIcon} /> */}
+      {/*      </span> */}
+      {/*    </button> */}
+      {/*  )} */}
+      {/*  {userIds.map((userId) => ( */}
+      {/*    <span key={userId} className={styles.filterItem}> */}
+      {/*      <UserAvatar id={userId} size="tiny" onClick={handleUserClick} /> */}
+      {/*    </span> */}
+      {/*  ))} */}
+      {/* </span> */}
       <span className={styles.filter}>
         <LabelsPopup
           currentIds={labelIds}

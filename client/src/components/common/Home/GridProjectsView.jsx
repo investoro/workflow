@@ -19,7 +19,11 @@ const GridProjectsView = React.memo(() => {
     dispatch(entryActions.openAddProjectModal());
   }, [dispatch]);
 
-  return <Projects ids={projectIds} onAdd={handleAdd} />;
+  const handleAddFromTemplate = useCallback(() => {
+    dispatch(entryActions.openAddProjectFromTemplateModal());
+  }, [dispatch]);
+
+  return <Projects ids={projectIds} onAdd={handleAdd} onAddFromTemplate={handleAddFromTemplate} />;
 });
 
 export default GridProjectsView;

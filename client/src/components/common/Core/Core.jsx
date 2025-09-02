@@ -19,6 +19,7 @@ import AdministrationModal from '../AdministrationModal';
 import UserSettingsModal from '../../users/UserSettingsModal';
 import ProjectBackground from '../../projects/ProjectBackground';
 import AddProjectModal from '../../projects/AddProjectModal';
+import AddProjectFromTemplateModal from '../../projects/AddProjectFromTemplateModal';
 
 const Core = React.memo(() => {
   const isInitializing = useSelector(selectors.selectIsInitializing);
@@ -68,6 +69,10 @@ const Core = React.memo(() => {
         break;
       case ModalTypes.ADD_PROJECT:
         modalNode = <AddProjectModal />;
+
+        break;
+      case ModalTypes.ADD_PROJECT_FROM_TEMPLATE:
+        modalNode = <AddProjectFromTemplateModal />;
 
         break;
       default:

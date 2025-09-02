@@ -30,6 +30,16 @@ const openAddProjectModal = (defaultProjectType) => ({
   },
 });
 
+const openAddProjectFromTemplateModal = (defaultProjectType) => ({
+  type: EntryActionTypes.MODAL_OPEN,
+  payload: {
+    type: ModalTypes.ADD_PROJECT_FROM_TEMPLATE,
+    params: {
+      defaultType: defaultProjectType,
+    },
+  },
+});
+
 const openProjectSettingsModal = () => ({
   type: EntryActionTypes.MODAL_OPEN,
   payload: {
@@ -56,6 +66,7 @@ export default {
   openAdministrationModal,
   openUserSettingsModal,
   openAddProjectModal,
+  openAddProjectFromTemplateModal,
   openProjectSettingsModal,
   openBoardSettingsModal,
   closeModal,

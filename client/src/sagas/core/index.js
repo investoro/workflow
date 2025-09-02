@@ -10,7 +10,6 @@ import services from './services';
 import selectors from '../../selectors';
 import { socket } from '../../api';
 import ActionTypes from '../../constants/ActionTypes';
-import Paths from '../../constants/Paths';
 
 export default function* coreSaga() {
   yield all(watchers.map((watcher) => fork(watcher)));

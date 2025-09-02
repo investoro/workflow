@@ -11,9 +11,8 @@ import { Input, Popup } from '../../../../lib/custom-ui';
 
 import selectors from '../../../../selectors';
 import entryActions from '../../../../entry-actions';
-import { useField, useNestedRef, useSteps } from '../../../../hooks';
+import { useField, useSteps } from '../../../../hooks';
 import { isUserAdminOrProjectOwner } from '../../../../utils/record-helpers';
-import User from './User';
 import SelectPermissionsStep from '../SelectPermissionsStep';
 
 import styles from './AddStep.module.scss';
@@ -109,18 +108,17 @@ const AddStep = React.memo(({ onClose }) => {
         })}
       </Popup.Header>
       <Popup.Content>
-        {/*<Input*/}
-        {/*  fluid*/}
-        {/*  ref={handleSearchFieldRef}*/}
-        {/*  value={search}*/}
-        {/*  placeholder={t('common.searchUsers')}*/}
-        {/*  maxLength={128}*/}
-        {/*  icon="search"*/}
-        {/*  onChange={handleSearchChange}*/}
-        {/*/>*/}
+        {/* <Input */}
+        {/*  fluid */}
+        {/*  ref={handleSearchFieldRef} */}
+        {/*  value={search} */}
+        {/*  placeholder={t('common.searchUsers')} */}
+        {/*  maxLength={128} */}
+        {/*  icon="search" */}
+        {/*  onChange={handleSearchChange} */}
+        {/* /> */}
         <div className={styles.inputWrapper}>
-          <div
-            className={styles.inputLabel}>{t('common.email')}</div>
+          <div className={styles.inputLabel}>{t('common.email')}</div>
           <Input
             fluid
             ref={emailOrUsernameField}
@@ -130,18 +128,18 @@ const AddStep = React.memo(({ onClose }) => {
             onChange={handleFieldChange}
           />
         </div>
-        {/*{filteredUsers.length > 0 && (*/}
-        {/*  <div className={styles.users}>*/}
-        {/*    {filteredUsers.map((user) => (*/}
-        {/*      <User*/}
-        {/*        key={user.id}*/}
-        {/*        id={user.id}*/}
-        {/*        isActive={currentUserIds.includes(user.id)}*/}
-        {/*        onSelect={handleUserSelect}*/}
-        {/*      />*/}
-        {/*    ))}*/}
-        {/*  </div>*/}
-        {/*)}*/}
+        {/* {filteredUsers.length > 0 && ( */}
+        {/*  <div className={styles.users}> */}
+        {/*    {filteredUsers.map((user) => ( */}
+        {/*      <User */}
+        {/*        key={user.id} */}
+        {/*        id={user.id} */}
+        {/*        isActive={currentUserIds.includes(user.id)} */}
+        {/*        onSelect={handleUserSelect} */}
+        {/*      /> */}
+        {/*    ))} */}
+        {/*  </div> */}
+        {/* )} */}
       </Popup.Content>
     </>
   );
