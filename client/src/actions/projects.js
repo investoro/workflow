@@ -98,7 +98,7 @@ const handleProjectDuplicate = (
   },
 });
 
-const handleProjectCreateFromTemplate = (
+const handleProjectCreateFromTemplate = ({
   project,
   users,
   projectManagers,
@@ -108,7 +108,7 @@ const handleProjectCreateFromTemplate = (
   boardMemberships,
   customFields,
   notificationServices,
-) => ({
+}) => ({
   type: ActionTypes.PROJECT_CREATE_FROM_TEMPLATE_HANDLE,
   payload: {
     project,

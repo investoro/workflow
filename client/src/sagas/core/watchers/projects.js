@@ -22,9 +22,9 @@ export default function* projectsWatchers() {
     takeEvery(EntryActionTypes.PROJECT_CREATE, ({ payload: { data } }) =>
       services.createProject(data),
     ),
-    takeEvery(EntryActionTypes.PROJECT_CREATE_FROM_TEMPLATE, ({ payload }) =>
-      services.createProjectFromTemplate(payload),
-    ),
+    takeEvery(EntryActionTypes.PROJECT_CREATE_FROM_TEMPLATE, function* ({ payload: { data } }) {
+      yield services.createProjectFromTemplate({ data });
+    }),
     takeEvery(EntryActionTypes.PROJECT_CREATE_HANDLE, ({ payload: { project } }) =>
       services.handleProjectCreate(project),
     ),
@@ -43,7 +43,7 @@ export default function* projectsWatchers() {
     takeEvery(EntryActionTypes.PROJECT_DUPLICATE_HANDLE, ({ payload: { project } }) =>
       services.handleProjectDuplicate(project),
     ),
-    takeEvery(EntryActionTypes.PROJECT_CREATE_FROM_TEMPLATE, ({ payload: { project } }) =>
+    takeEvery(EntryActionTypes.PROJECT_CREATE_FROM_TEMPLATE_HANDLE, ({ payload: { project } }) =>
       services.handleProjectCreateFromTemplate(project),
     ),
     takeEvery(EntryActionTypes.CURRENT_PROJECT_DELETE, () => services.deleteCurrentProject()),

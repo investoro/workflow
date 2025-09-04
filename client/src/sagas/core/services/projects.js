@@ -60,23 +60,17 @@ export function* createProject(data) {
 export function* createProjectFromTemplate({ data }) {
   const { templateId, ...projectData } = data;
 
-  yield put(actions.createProject(omit(projectData, 'type')));
-
-  let project;
-  let projectManagers;
-
   try {
-    ({
+    const {
       item: project,
       included: { projectManagers },
-    } = yield call(request, api.createProjectFromTemplate, templateId, projectData));
+    } = yield call(request, api.createProjectFromTemplate, templateId, projectData);
+
+    return { project, projectManagers };
   } catch (error) {
     yield put(actions.createProject.failure(error));
     return null;
   }
-
-  yield put(actions.createProject.success(project, projectManagers));
-  yield call(goToProject, project.id);
 }
 
 export function* handleProjectCreate({ id }) {
@@ -342,48 +336,51 @@ export function* handleProjectDuplicate({ id }) {
   );
 }
 
-export function* handleProjectCreateFromTemplate({ id }) {
-  let project;
+export function* handleProjectCreateFromTemplate({ project }) {
+  let fullProjectData;
   let users;
-  let projectManagers;
   let backgroundImages;
   let baseCustomFieldGroups;
   let boards;
   let boardMemberships;
   let customFields;
   let notificationServices;
+  let projectManagers;
 
   try {
     ({
-      item: project,
+      item: fullProjectData,
       included: {
         users,
-        projectManagers,
         backgroundImages,
         baseCustomFieldGroups,
+        projectManagers,
         boards,
         boardMemberships,
         customFields,
         notificationServices,
       },
-    } = yield call(request, api.getProject, id));
-  } catch {
+    } = yield call(request, api.getProject, project.id));
+  } catch (error) {
+    console.error('Failed to fetch project details:', error);
     return;
   }
 
   yield put(
-    actions.handleProjectCreateFromTemplate(
-      project,
+    actions.handleProjectCreateFromTemplate({
+      project: fullProjectData,
       users,
-      projectManagers,
+      projectManagers: projectManagers || [],
       backgroundImages,
       baseCustomFieldGroups,
       boards,
       boardMemberships,
       customFields,
       notificationServices,
-    ),
+    }),
   );
+
+  yield call(goToProject, project.id);
 }
 
 export function* deleteProject(id) {
