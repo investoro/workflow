@@ -1,7 +1,7 @@
 // server/api/controllers/projects/from-template.js
 const { idInput } = require('../../../utils/inputs');
 
-const TEMPLATE_PROJECT_ID = '1590695866325271866';
+const TEMPLATE_PROJECT_ID = '1591988814170031245';
 
 module.exports = {
   inputs: {
