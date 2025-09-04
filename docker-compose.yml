@@ -16,6 +16,7 @@ services:
       - BASE_URL=https://flipboard.investoro.pl
       - DATABASE_URL=postgresql://postgres@postgres/planka
       - SECRET_KEY=667dbf2fb71a072e276b2c2040a21b65f5770fd2f22d19be1e81aa6e11916d908b69dc4062d4c5f348ef6feddd210af6494e5699e6ba79d08087857f27800583
+      - SSO_SHARED_SECRET=+Of+/oxLgHg0gBtYOzif1pu2S3EpBTX16sQQmxBdj5s=
 
       # Optionally store the database password in secrets:
       # - DATABASE_URL=postgresql://postgres:$${DATABASE_PASSWORD}@postgres/planka

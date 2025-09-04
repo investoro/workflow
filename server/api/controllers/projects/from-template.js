@@ -1,4 +1,3 @@
-// server/api/controllers/projects/from-template.js
 const { idInput } = require('../../../utils/inputs');
 
 const TEMPLATE_PROJECT_ID = '1591988814170031245';
@@ -58,8 +57,7 @@ module.exports = {
 
     const boards = await Board.find({ projectId: originalProjectId });
 
-    await Promise.all(
-      boards.map(async (board) => {
+    for (const board of boards) {
         const { id: originalBoardId, ...boardData } = board;
         const newBoard = await Board.create({
           ...boardData,
@@ -70,17 +68,27 @@ module.exports = {
         const lists = await List.qm.getByBoardId(originalBoardId);
         const labels = await Label.qm.getByBoardId(originalBoardId);
 
-        await Promise.all(
-          boardMemberships.map((boardMembership) => {
-            const { id, ...bmData } = boardMembership;
-            return BoardMembership.qm.createOne({
-              ...bmData,
-              projectId: project.id,
-              boardId: newBoard.id,
-              userId: currentUser.id,
-            });
-          }),
-        );
+        // await Promise.all(
+        //   boardMemberships.map((boardMembership) => {
+        //     const { id, ...bmData } = boardMembership;
+        //     return BoardMembership.qm.createOne({
+        //       ...bmData,
+        //       projectId: project.id,
+        //       boardId: newBoard.id,
+        //       userId: currentUser.id,
+        //     });
+        //   }),
+        // );
+
+        for (const boardMembership of boardMemberships) {
+          const { id, ...bmData } = boardMembership;
+          await BoardMembership.qm.createOne({
+            ...bmData,
+            projectId: project.id,
+            boardId: newBoard.id,
+            userId: currentUser.id,
+          });
+        }
 
         await Promise.all(
           lists.map(async (list) => {
@@ -168,7 +176,18 @@ module.exports = {
             });
           }),
         );
-      }),
+      }
+
+    sails.sockets.broadcast(
+      `user:${currentUser.id}`,
+      'createProjectFromTemplate',
+      {
+        item: project,
+        included: {
+          projectManagers: [projectManager],
+        },
+      },
+      inputs.request,
     );
 
     return {

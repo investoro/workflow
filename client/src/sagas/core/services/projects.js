@@ -70,15 +70,13 @@ export function* createProjectFromTemplate({ data }) {
       item: project,
       included: { projectManagers },
     } = yield call(request, api.createProjectFromTemplate, templateId, projectData));
-    yield put(actions.createProject.success(project, projectManagers));
-
-    yield call(goToProject, project.id);
-
-    return { project, projectManagers };
   } catch (error) {
     yield put(actions.createProject.failure(error));
     return null;
   }
+
+  yield put(actions.createProject.success(project, projectManagers));
+  yield call(goToProject, project.id);
 }
 
 export function* handleProjectCreate({ id }) {
@@ -344,6 +342,50 @@ export function* handleProjectDuplicate({ id }) {
   );
 }
 
+export function* handleProjectCreateFromTemplate({ id }) {
+  let project;
+  let users;
+  let projectManagers;
+  let backgroundImages;
+  let baseCustomFieldGroups;
+  let boards;
+  let boardMemberships;
+  let customFields;
+  let notificationServices;
+
+  try {
+    ({
+      item: project,
+      included: {
+        users,
+        projectManagers,
+        backgroundImages,
+        baseCustomFieldGroups,
+        boards,
+        boardMemberships,
+        customFields,
+        notificationServices,
+      },
+    } = yield call(request, api.getProject, id));
+  } catch {
+    return;
+  }
+
+  yield put(
+    actions.handleProjectCreateFromTemplate(
+      project,
+      users,
+      projectManagers,
+      backgroundImages,
+      baseCustomFieldGroups,
+      boards,
+      boardMemberships,
+      customFields,
+      notificationServices,
+    ),
+  );
+}
+
 export function* deleteProject(id) {
   const { projectId } = yield select(selectors.selectPath);
 
@@ -395,4 +437,5 @@ export default {
   handleProjectDelete,
   duplicateProject,
   handleProjectDuplicate,
+  handleProjectCreateFromTemplate,
 };

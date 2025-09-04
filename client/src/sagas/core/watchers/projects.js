@@ -43,6 +43,9 @@ export default function* projectsWatchers() {
     takeEvery(EntryActionTypes.PROJECT_DUPLICATE_HANDLE, ({ payload: { project } }) =>
       services.handleProjectDuplicate(project),
     ),
+    takeEvery(EntryActionTypes.PROJECT_CREATE_FROM_TEMPLATE, ({ payload: { project } }) =>
+      services.handleProjectCreateFromTemplate(project),
+    ),
     takeEvery(EntryActionTypes.CURRENT_PROJECT_DELETE, () => services.deleteCurrentProject()),
     takeEvery(EntryActionTypes.PROJECT_DELETE_HANDLE, ({ payload: { project } }) =>
       services.handleProjectDelete(project),

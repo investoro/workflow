@@ -43,6 +43,7 @@ export default class extends BaseModel {
       case ActionTypes.CORE_INITIALIZE:
       case ActionTypes.PROJECT_CREATE_HANDLE:
       case ActionTypes.PROJECT_DUPLICATE_HANDLE:
+      case ActionTypes.PROJECT_CREATE_FROM_TEMPLATE_HANDLE:
         payload.notificationServices.forEach((notificationService) => {
           NotificationService.upsert(notificationService);
         });

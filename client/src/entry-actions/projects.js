@@ -86,6 +86,13 @@ const handleProjectDuplicate = (project) => ({
   },
 });
 
+const handleProjectCreateFromTemplate = (project) => ({
+  type: EntryActionTypes.PROJECT_CREATE_FROM_TEMPLATE_HANDLE,
+  payload: {
+    project,
+  },
+});
+
 const deleteCurrentProject = () => ({
   type: EntryActionTypes.CURRENT_PROJECT_DELETE,
   payload: {},
@@ -112,4 +119,5 @@ export default {
   handleProjectDelete,
   duplicateProject,
   handleProjectDuplicate,
+  handleProjectCreateFromTemplate,
 };

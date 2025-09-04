@@ -98,6 +98,31 @@ const handleProjectDuplicate = (
   },
 });
 
+const handleProjectCreateFromTemplate = (
+  project,
+  users,
+  projectManagers,
+  backgroundImages,
+  baseCustomFieldGroups,
+  boards,
+  boardMemberships,
+  customFields,
+  notificationServices,
+) => ({
+  type: ActionTypes.PROJECT_CREATE_FROM_TEMPLATE_HANDLE,
+  payload: {
+    project,
+    users,
+    projectManagers,
+    backgroundImages,
+    baseCustomFieldGroups,
+    boards,
+    boardMemberships,
+    customFields,
+    notificationServices,
+  },
+});
+
 const updateProject = (id, data) => ({
   type: ActionTypes.PROJECT_UPDATE,
   payload: {
@@ -237,4 +262,5 @@ export default {
   handleProjectDelete,
   duplicateProject,
   handleProjectDuplicate,
+  handleProjectCreateFromTemplate,
 };

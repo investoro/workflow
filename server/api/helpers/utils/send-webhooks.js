@@ -70,6 +70,7 @@ const EVENT_TYPES = {
   PROJECT_UPDATE: 'projectUpdate',
   PROJECT_DELETE: 'projectDelete',
   PROJECT_DUPLICATE: 'projectDuplicate',
+  PROJECT_CREATE_FROM_TEMPLATE: 'createProjectFromTemplate',
 
   PROJECT_MANAGER_CREATE: 'projectManagerCreate',
   PROJECT_MANAGER_DELETE: 'projectManagerDelete',
